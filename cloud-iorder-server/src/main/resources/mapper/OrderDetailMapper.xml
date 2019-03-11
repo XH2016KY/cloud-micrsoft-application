@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.OrderDetailMapper" >
+
+
+    <select id="findByOrderId" resultType="com.oks.pojo.OrderDetail">
+      select * from tb_order_detail where order_id=#{orderId}
+    </select>
+  
+    <select id="findByDate" resultType="com.oks.pojo.OrderDetail">
+      select * from tb_order_detail where create_time between 
+      #{start} and #{end}
+    </select>
+</mapper>

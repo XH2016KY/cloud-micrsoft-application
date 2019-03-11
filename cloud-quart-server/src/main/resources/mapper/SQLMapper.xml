@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.SQLMapper" >
+
+          <select id="findByName" resultType="string">
+                select item_name from tb_quartInfo_order where item_name =#{name}
+          </select>
+          
+          <select id="findByOldName" resultType="integer">
+                select item_stock_old from tb_stock_old where item_name =#{name}
+          </select>
+          
+          <select id="findByNewName" resultType="integer">
+                select item_stock_new  from tb_stock_new where item_name =#{name}
+          </select>
+          
+</mapper>

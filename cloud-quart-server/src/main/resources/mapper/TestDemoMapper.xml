@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.TestDemoMapper" >
+
+     <insert id="insertAll">
+         
+         insert into  test_demo (id,name) values 
+         <foreach collection="demoList" item="list" separator="," >
+               (#{list.id},#{list.name})
+         </foreach>
+         
+     </insert>
+     
+     <select id="selectCount" resultType="long">
+         select count(*) from test_demo
+     </select>
+     
+     <select id="selectAll" resultType="com.oks.pojo.TestDemo">
+         select * from test_demo
+     </select>
+     
+     <select id="selectByPage" resultType="com.oks.pojo.TestDemo">
+         select * from test_demo limit #{start},#{size}
+     
+     </select>
+     
+</mapper>

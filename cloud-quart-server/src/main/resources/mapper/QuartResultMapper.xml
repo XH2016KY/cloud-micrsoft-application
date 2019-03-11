@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oks.mapper.QuartResultMapper" >
+
+          <resultMap type="com.oks.pojo.QuartResult" id="base">
+               <id column="item_name" property="itemName"/>
+          </resultMap>
+
+          <select id="quart" resultMap="base">
+          
+            <!-- select new.item_name,old.item_stock_old,new.item_stock_new,old.item_stock_old-new.item_stock_new from tb_stock_new as new
+                      LEFT JOIN tb_stock_old as old 
+                   on new.item_name = old.item_name  -->
+             select new.item_name,old.item_stock_old,new.item_stock_new,old.item_stock_old-new.item_stock_new,t3.item_qutity from tb_stock_new as new
+                      LEFT JOIN tb_stock_old as old 
+                   on new.item_name = old.item_name 
+                      LEFT JOIN tb_quartInfo_order as t3
+                         on old.item_name = t3.item_name and old.item_stock_old-new.item_stock_new = t3.item_qutity
+             where t3.item_qutity is null;
+          </select>
+</mapper>
